@@ -1,0 +1,222 @@
+# Candidate profile — edit this file to tune matching, no code changes needed.
+# Do not add skills/experience here that aren't real; the scorer trusts this file.
+
+candidate:
+  name: "Suhani Jain"
+  education: "Final-year B.E. student, BMSCE"
+  experience_years: 0  # pre-graduation; internships count toward experience_fit, not raw years
+
+# Free-text description embedded once and compared against every job description
+# via Layer 2 (semantic similarity). Keep this honest and specific to real skills.
+profile_blurb: >
+  Final-year Computer Science engineering student with hands-on experience in
+  machine learning, deep learning, computer vision, and NLP, including large
+  language models. Comfortable building and deploying models with PyTorch,
+  TensorFlow, Keras, and Scikit-learn, and building computer vision pipelines
+  with OpenCV, YOLO, and CLIP. Experience fine-tuning LLMs with QLoRA and
+  serving models with vLLM. Backend development experience with Python,
+  FastAPI, and Flask, containerized with Docker and deployed on GCP and
+  Kubernetes. Also proficient in C++, SQL, and JavaScript. Looking for
+  software engineering or AI/ML internships and entry-level full-time roles.
+
+skills:
+  - Python
+  - C++
+  - SQL
+  - JavaScript
+  - Machine Learning
+  - Deep Learning
+  - NLP
+  - Computer Vision
+  - LLMs
+  - PyTorch
+  - TensorFlow
+  - Keras
+  - Scikit-learn
+  - OpenCV
+  - FastAPI
+  - Flask
+  - Docker
+  - Git
+  - Hugging Face
+  - YOLO
+  - CLIP
+  - QLoRA
+  - Model Deployment
+  - GCP
+  - Kubernetes
+  - vLLM
+
+# Synonyms/variants for each skill, used for fuzzy keyword matching against
+# job descriptions (case-insensitive substring match). Keep additive.
+skill_synonyms:
+  Machine Learning: ["ML", "machine learning"]
+  Deep Learning: ["DL", "deep learning", "neural network", "neural networks"]
+  NLP: ["natural language processing", "nlp"]
+  Computer Vision: ["CV", "computer vision", "image processing", "image recognition"]
+  LLMs: ["LLM", "large language model", "large language models", "generative ai", "genai"]
+  Hugging Face: ["huggingface", "hugging face", "transformers library"]
+  Model Deployment: ["model serving", "model inference", "inference pipeline", "ml deployment"]
+  GCP: ["google cloud", "google cloud platform"]
+  Kubernetes: ["k8s"]
+
+# Substrings matched against job titles (case-insensitive). Any hit counts as
+# a title match, regardless of exact wording — this is intentionally broad
+# for recall; unconventional titles are still caught via skill-keyword density
+# in Layer 1 even without a title match.
+title_synonyms:
+  - "software engineer"
+  - "software developer"
+  - "software development engineer"
+  - "sde"
+  - "swe"
+  - "application engineer"
+  - "application developer"
+  - "product engineer"
+  - "platform engineer"
+  - "backend engineer"
+  - "backend developer"
+  - "api engineer"
+  - "python developer"
+  - "python engineer"
+  - "full stack"
+  - "fullstack"
+  - "full-stack"
+  - "web developer"
+  - "systems engineer"
+  - "infrastructure engineer"
+  - "integration engineer"
+  - "solutions engineer"
+  - "graduate engineer"
+  - "new grad"
+  - "entry level"
+  - "entry-level"
+  - "junior engineer"
+  - "associate engineer"
+  - "engineer i"
+  - "engineer 1"
+  - "engineering intern"
+  - "developer intern"
+  - "technology intern"
+  - "technical intern"
+  - "machine learning engineer"
+  - "ml engineer"
+  - "ai engineer"
+  - "ai/ml engineer"
+  - "artificial intelligence engineer"
+  - "applied ai engineer"
+  - "applied machine learning engineer"
+  - "deep learning engineer"
+  - "computer vision engineer"
+  - "nlp engineer"
+  - "generative ai engineer"
+  - "genai engineer"
+  - "llm engineer"
+  - "ai agent engineer"
+  - "agentic ai engineer"
+  - "ai research engineer"
+  - "research engineer"
+  - "ml research engineer"
+  - "ai software engineer"
+  - "machine learning software engineer"
+  - "ai platform engineer"
+  - "ml platform engineer"
+  - "ml infrastructure engineer"
+  - "ai infrastructure engineer"
+  - "inference engineer"
+  - "model serving engineer"
+  - "mlops engineer"
+  - "ml systems engineer"
+  - "ai systems engineer"
+  - "computer vision software engineer"
+  - "nlp software engineer"
+  - "ai application engineer"
+  - "ai product engineer"
+  - "ai developer"
+  - "ml developer"
+  - "applied scientist"
+
+# Title substrings that signal a role is too senior. Matched in the TITLE
+# only (not the body) and downgrade rather than zero the score, since a
+# posting can be mislabeled or an "entry level" clause elsewhere can rescue it.
+seniority_exclude_keywords:
+  - "senior"
+  - "sr."
+  - "sr"
+  - "staff"
+  - "principal"
+  - "lead "
+  - "director"
+  - "head of"
+  - "vp "
+  - "vice president"
+  - "manager"
+
+# Titles that would otherwise trip a seniority keyword above but are, in
+# practice, used at all levels (including entry-level) in the AI industry —
+# e.g. "Member of Technical Staff" at OpenAI/Anthropic-style orgs is not
+# reliably senior despite containing "Staff". Checked before the seniority
+# keywords, as a full-title substring match.
+title_seniority_exceptions:
+  - "member of technical staff"
+
+# Phrases in the body that rescue a seniority-flagged title (e.g. "Senior"
+# in the title but the role is actually junior-friendly).
+seniority_rescue_phrases:
+  - "0-2 years"
+  - "0-1 year"
+  - "1-2 years"
+  - "new grad"
+  - "new graduate"
+  - "entry level"
+  - "entry-level"
+  - "no prior experience"
+  - "recent graduate"
+
+# Regex-detected experience phrases that count as junior-friendly.
+junior_experience_signals:
+  - "intern"
+  - "internship"
+  - "new grad"
+  - "new graduate"
+  - "entry level"
+  - "entry-level"
+  - "graduate program"
+  - "0-1 year"
+  - "0-2 years"
+  - "1-2 years"
+  - "fresher"
+
+locations:
+  - "India"
+  - "Bengaluru"
+  - "Bangalore"
+  - "Hyderabad"
+  - "Pune"
+  - "Mumbai"
+  - "Chennai"
+  - "Delhi"
+  - "Delhi NCR"
+  - "Gurugram"
+  - "Gurgaon"
+  - "Noida"
+  - "Remote India"
+  - "Remote - India"
+
+# Phrases that explicitly rule OUT India eligibility for a remote/other role.
+# Default when none of these are present: treat as eligible/uncertain (recall bias).
+india_ineligible_signals:
+  - "must be based in the united states"
+  - "must be us-based"
+  - "us-based only"
+  - "authorized to work in the united states"
+  - "united states work authorization"
+  - "us citizens only"
+  - "us citizenship required"
+  - "must be located in the uk"
+  - "uk based only"
+  - "eu residents only"
+  - "must be eligible to work in the eu"
+  - "canada only"
+  - "must be based in canada"
+  - "this role is not open to candidates outside"

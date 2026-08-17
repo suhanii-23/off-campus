@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+    "slow: downloads/runs the real sentence-transformers model (skipped by default)",
+]
+addopts = "-m 'not slow'"

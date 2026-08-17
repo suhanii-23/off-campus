@@ -1,0 +1,100 @@
+# Companies the pipeline actively scans every run. Each entry's ats_type +
+# ats_slug has been confirmed to resolve against the live ATS API.
+#
+# Note: discovery/probe_ats.py rewrites this file programmatically when it
+# appends a new confirmed company, which does NOT preserve hand-written
+# comments below the "companies:" key (a known pyyaml limitation) — if you
+# edit this file by hand, expect probe_ats.py's next run to only affect the
+# list itself.
+#
+# Add more via `python -m discovery.probe_ats "Company Name" slug` or by
+# hand — see README "How to add a company".
+companies:
+  - name: "Stripe"
+    ats_type: "greenhouse"
+    ats_slug: "stripe"
+    source: "manual"
+
+  - name: "Rigetti Computing"
+    ats_type: "lever"
+    ats_slug: "rigetti"
+    source: "manual"
+
+  - name: "Ramp"
+    ats_type: "ashby"
+    ats_slug: "ramp"
+    source: "manual"
+
+  - name: "Notion"
+    ats_type: "ashby"
+    ats_slug: "notion"
+    source: "auto_probe"
+
+  # --- Verified 2026-08-17: each of the below returned HTTP 200 with a
+  # non-empty job list at the time of adding (see README "How to add a
+  # company" for the verification method). ---
+
+  - name: "Databricks"
+    ats_type: "greenhouse"
+    ats_slug: "databricks"
+    source: "manual"
+
+  - name: "Postman"
+    ats_type: "greenhouse"
+    ats_slug: "postman"
+    source: "manual"
+
+  - name: "Groww"
+    ats_type: "greenhouse"
+    ats_slug: "groww"
+    source: "manual"
+
+  - name: "PhonePe"
+    ats_type: "greenhouse"
+    ats_slug: "phonepe"
+    source: "manual"
+
+  - name: "Airbnb"
+    ats_type: "greenhouse"
+    ats_slug: "airbnb"
+    source: "manual"
+
+  - name: "Coinbase"
+    ats_type: "greenhouse"
+    ats_slug: "coinbase"
+    source: "manual"
+
+  - name: "HackerRank"
+    ats_type: "greenhouse"
+    ats_slug: "hackerrank"
+    source: "manual"
+
+  - name: "Razorpay"
+    ats_type: "greenhouse"
+    ats_slug: "razorpaysoftwareprivatelimited"
+    source: "manual"
+
+  - name: "Observe.AI"
+    ats_type: "greenhouse"
+    ats_slug: "observeai"
+    source: "manual"
+
+  - name: "Netradyne"
+    ats_type: "greenhouse"
+    ats_slug: "netradyne"
+    source: "manual"
+
+  - name: "CRED"
+    ats_type: "lever"
+    ats_slug: "cred"
+    source: "manual"
+
+  - name: "Meesho"
+    ats_type: "lever"
+    ats_slug: "meesho"
+    source: "manual"
+
+  - name: "Sarvam AI"
+    ats_type: "ashby"
+    ats_slug: "sarvam"
+    source: "manual"

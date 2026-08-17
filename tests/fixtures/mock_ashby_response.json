@@ -1,0 +1,35 @@
+{
+  "apiVersion": "1",
+  "jobs": [
+    {
+      "id": "cccc3333-dddd-4444-eeee-555566667777",
+      "title": "New Grad Software Engineer",
+      "location": "Bengaluru, India",
+      "descriptionPlain": "We're hiring new grad software engineers to work across our backend systems in Python and Go, deployed on GCP with Kubernetes.",
+      "descriptionHtml": "<p>We're hiring new grad software engineers to work across our backend systems in Python and Go, deployed on GCP with Kubernetes.</p>",
+      "applyUrl": "https://jobs.ashbyhq.com/initech/cccc3333-dddd-4444-eeee-555566667777/application",
+      "jobUrl": "https://jobs.ashbyhq.com/initech/cccc3333-dddd-4444-eeee-555566667777",
+      "publishedAt": "2026-08-12T10:00:00.000+00:00",
+      "employmentType": "FullTime",
+      "isListed": true,
+      "isRemote": false,
+      "department": "Engineering",
+      "team": "Backend"
+    },
+    {
+      "id": "dddd4444-eeee-5555-ffff-666677778888",
+      "title": "Unlisted Draft Role",
+      "location": "Remote",
+      "descriptionPlain": "This posting is not yet published.",
+      "descriptionHtml": "<p>This posting is not yet published.</p>",
+      "applyUrl": "https://jobs.ashbyhq.com/initech/dddd4444-eeee-5555-ffff-666677778888/application",
+      "jobUrl": "https://jobs.ashbyhq.com/initech/dddd4444-eeee-5555-ffff-666677778888",
+      "publishedAt": "2026-08-01T10:00:00.000+00:00",
+      "employmentType": "FullTime",
+      "isListed": false,
+      "isRemote": true,
+      "department": "Engineering",
+      "team": "Backend"
+    }
+  ]
+}

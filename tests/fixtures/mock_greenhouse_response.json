@@ -1,0 +1,34 @@
+{
+  "jobs": [
+    {
+      "id": 5551001,
+      "title": "Software Engineer Intern - Backend",
+      "location": {"name": "Bengaluru, India"},
+      "content": "<p>We are looking for a Software Engineering Intern to join our backend team.</p><p>You will work with <strong>Python</strong>, FastAPI, and Docker to build APIs that power our product. Experience with SQL and Git required. This is an entry-level internship open to final-year students.</p>",
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/5551001",
+      "updated_at": "2026-08-10T09:00:00-07:00",
+      "first_published": "2026-08-10T09:00:00-07:00",
+      "company_name": "Acme"
+    },
+    {
+      "id": 5551002,
+      "title": "Senior Staff Software Engineer, Payments",
+      "location": {"name": "Remote - US"},
+      "content": "<p>We are looking for a Senior Staff Engineer with 10+ years of experience to lead our payments platform.</p>",
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/5551002",
+      "updated_at": "2026-08-09T09:00:00-07:00",
+      "first_published": "2026-07-01T09:00:00-07:00",
+      "company_name": "Acme"
+    },
+    {
+      "id": 5551003,
+      "title": "Product Engineer, AI Applications",
+      "location": {"name": "Bengaluru, India"},
+      "content": "<p>Build intelligent applications powered by large language models. You'll work on RAG pipelines, vector databases, and LLM fine-tuning using Hugging Face and PyTorch, deployed with FastAPI and Kubernetes.</p>",
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/5551003",
+      "updated_at": "2026-08-11T09:00:00-07:00",
+      "first_published": "2026-08-11T09:00:00-07:00",
+      "company_name": "Acme"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+name: job-hunter-pipeline
+
+on:
+  schedule:
+    # Every 6 hours. GitHub Actions cron is best-effort — actual run times
+    # can slip by anywhere from a few minutes to 30+ under load. Do not
+    # treat this as a precise real-time guarantee (see README).
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache pip + Hugging Face model
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/huggingface
+          key: ${{ runner.os }}-deps-${{ hashFiles('requirements.txt') }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          # MUST point to a persistent Postgres (e.g. Supabase) — this
+          # runner is ephemeral and a SQLite file would not survive between
+          # runs, which would break deduplication and re-notify every job
+          # as "new" on every single scan.
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MATCH_THRESHOLD: "80"
+          HIGH_RECALL_MODE: "true"
+        run: python main.py

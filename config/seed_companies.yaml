@@ -1,0 +1,32 @@
+# Candidate companies with a guessed ATS slug but NOT yet confirmed to
+# resolve against a live ATS. Not scanned by main.py directly.
+#
+# Run `python -m discovery.probe_ats --from-seed` to probe these against
+# Greenhouse/Lever/Ashby and, on a confirmed hit, move them into
+# config/companies.yaml automatically. This is a starter list — append
+# freely (e.g. from YC's public company directory, startup news, etc.).
+companies:
+  - name: "Notion"
+    guessed_slug: "notion"
+  - name: "Linear"
+    guessed_slug: "linear"
+  - name: "Vercel"
+    guessed_slug: "vercel"
+  - name: "Perplexity AI"
+    guessed_slug: "perplexity"
+  - name: "Anysphere"
+    guessed_slug: "anysphere"
+  - name: "Runway"
+    guessed_slug: "runway"
+  - name: "Cohere"
+    guessed_slug: "cohere"
+  - name: "Harvey"
+    guessed_slug: "harvey"
+  - name: "Airbnb"
+    guessed_slug: "airbnb"
+  - name: "Pinterest"
+    guessed_slug: "pinterest"
+  - name: "Samsara"
+    guessed_slug: "samsara"
+  - name: "Robinhood"
+    guessed_slug: "robinhood"

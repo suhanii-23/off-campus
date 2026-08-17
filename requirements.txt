@@ -1,0 +1,14 @@
+requests>=2.31
+pyyaml>=6.0
+python-dotenv>=1.0
+sqlalchemy>=2.0
+psycopg2-binary>=2.9
+sentence-transformers>=2.7
+anthropic>=0.34
+tenacity>=8.2
+beautifulsoup4>=4.12
+streamlit>=1.36
+pandas>=2.2
+pytest>=8.0
+pytest-mock>=3.14
+freezegun>=1.5

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "aaaa1111-bbbb-2222-cccc-333344445555",
+    "text": "Machine Learning Engineer, Computer Vision",
+    "categories": {
+      "commitment": "Full-time",
+      "department": "Engineering",
+      "location": "Bengaluru, India",
+      "team": "ML Platform",
+      "allLocations": ["Bengaluru, India"]
+    },
+    "descriptionPlain": "Join our computer vision team to build and deploy models using PyTorch, OpenCV, and YOLO. You'll fine-tune CLIP-based models and serve them with vLLM. 0-2 years of experience welcome.",
+    "hostedUrl": "https://jobs.lever.co/globex/aaaa1111-bbbb-2222-cccc-333344445555",
+    "createdAt": 1786000000000,
+    "applyUrl": "https://jobs.lever.co/globex/aaaa1111-bbbb-2222-cccc-333344445555/apply",
+    "country": "IN",
+    "workplaceType": "hybrid"
+  },
+  {
+    "id": "bbbb2222-cccc-3333-dddd-444455556666",
+    "text": "Director of Engineering",
+    "categories": {
+      "commitment": "Full-time",
+      "department": "Engineering",
+      "location": "San Francisco, CA",
+      "team": "Leadership",
+      "allLocations": ["San Francisco, CA"]
+    },
+    "descriptionPlain": "We're looking for a Director of Engineering with 12+ years of experience managing large engineering orgs.",
+    "hostedUrl": "https://jobs.lever.co/globex/bbbb2222-cccc-3333-dddd-444455556666",
+    "createdAt": 1785000000000,
+    "applyUrl": "https://jobs.lever.co/globex/bbbb2222-cccc-3333-dddd-444455556666/apply",
+    "country": "US",
+    "workplaceType": "onsite"
+  }
+]
