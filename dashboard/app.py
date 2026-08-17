@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import pandas as pd
 import streamlit as st
 
+from config import settings  # noqa: F401 - import triggers load_dotenv() so DATABASE_URL is read from .env
 from database.engine import get_session, init_db
 from database.models import Job
 
