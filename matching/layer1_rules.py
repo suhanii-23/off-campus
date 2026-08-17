@@ -81,7 +81,10 @@ def score_layer1(raw_job: RawJob, profile: dict) -> Layer1Result:
 
     # --- Experience fit ---
     junior_signals = profile.get("junior_experience_signals", [])
-    has_junior_signal = any(sig.lower() in combined_lower for sig in junior_signals)
+    # Word-boundary match, not plain substring: "intern" as a bare substring
+    # matches inside "international"/"internal", which are extremely common
+    # in job descriptions and have nothing to do with internships.
+    has_junior_signal = any(_contains_word(combined_lower, sig) for sig in junior_signals)
     min_years = _min_years_required(description)
 
     experience_bonus = 0
@@ -127,9 +130,9 @@ def score_layer1(raw_job: RawJob, profile: dict) -> Layer1Result:
 
     # --- India eligibility ---
     ineligible_signals = profile.get("india_ineligible_signals", [])
-    explicit_exclusion = any(sig.lower() in combined_lower for sig in ineligible_signals)
+    explicit_exclusion = any(_contains_word(combined_lower, sig) for sig in ineligible_signals)
     india_locations = profile.get("locations", [])
-    explicit_india_match = any(loc.lower() in combined_lower for loc in india_locations)
+    explicit_india_match = any(_contains_word(combined_lower, loc) for loc in india_locations)
 
     if explicit_exclusion:
         india_eligible = False

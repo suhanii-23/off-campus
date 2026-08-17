@@ -28,6 +28,29 @@ def compute_content_hash(title: str, description: str) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
+# Some ATS platforms (notably Greenhouse) don't expose a structured
+# employment-type field at all, leaving RawJob.employment_type_raw as None
+# for every job. Checked against the TITLE only (not the description, which
+# is long/noisy and prone to unrelated false positives, e.g. "intern" as a
+# bare substring matching inside "international"/"internal").
+_EMPLOYMENT_TYPE_TITLE_PATTERNS = [
+    (re.compile(r"\b(?:intern|interns|internship)\b", re.IGNORECASE), "Internship"),
+    (re.compile(r"\b(?:contract|contractor)\b", re.IGNORECASE), "Contract"),
+    (re.compile(r"\b(?:part-time|part time)\b", re.IGNORECASE), "Part-time"),
+    (re.compile(r"\b(?:temporary|temp)\b", re.IGNORECASE), "Temporary"),
+]
+
+
+def infer_employment_type(raw_job: RawJob) -> str:
+    if raw_job.employment_type_raw:
+        return raw_job.employment_type_raw
+    title = raw_job.title or ""
+    for pattern, label in _EMPLOYMENT_TYPE_TITLE_PATTERNS:
+        if pattern.search(title):
+            return label
+    return "Full-time"
+
+
 def get_or_create_company(
     session: Session, name: str, ats_type: str, ats_slug: str, source: str = "manual"
 ) -> Company:
@@ -127,7 +150,7 @@ def upsert_job(
         existing.is_active = True
         existing.title = raw_job.title
         existing.location_raw = raw_job.location_raw
-        existing.employment_type = raw_job.employment_type_raw or existing.employment_type
+        existing.employment_type = infer_employment_type(raw_job)
         existing.description_raw = raw_job.description_raw
         existing.apply_url = raw_job.apply_url
         existing.content_hash = content_hash
@@ -144,7 +167,7 @@ def upsert_job(
         title=raw_job.title,
         company_name=raw_job.company_name,
         location_raw=raw_job.location_raw,
-        employment_type=raw_job.employment_type_raw,
+        employment_type=infer_employment_type(raw_job),
         description_raw=raw_job.description_raw,
         apply_url=raw_job.apply_url,
         posted_at=_parse_posted_at(raw_job.posted_at),

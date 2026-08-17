@@ -1,5 +1,5 @@
 from collectors.base import RawJob
-from database.crud import build_job_index, get_or_create_company, upsert_job
+from database.crud import build_job_index, get_or_create_company, infer_employment_type, upsert_job
 from database.models import Job
 
 
@@ -167,3 +167,37 @@ def test_upsert_job_with_index_registers_new_job_for_in_scan_dedup(db_session):
 
     db_session.commit()
     assert db_session.query(Job).count() == 1
+
+
+def test_infer_employment_type_uses_ats_value_when_present():
+    job = make_raw_job(employment_type_raw="Full-time")
+    assert infer_employment_type(job) == "Full-time"
+
+
+def test_infer_employment_type_detects_internship_from_title():
+    job = make_raw_job(employment_type_raw=None, title="Software Engineer, Intern")
+    assert infer_employment_type(job) == "Internship"
+
+
+def test_infer_employment_type_does_not_false_positive_on_internal_international():
+    job = make_raw_job(employment_type_raw=None, title="Internal Audit Lead, International Tax")
+    assert infer_employment_type(job) == "Full-time"
+
+
+def test_infer_employment_type_detects_contract():
+    job = make_raw_job(employment_type_raw=None, title="Contract Recruiter")
+    assert infer_employment_type(job) == "Contract"
+
+
+def test_infer_employment_type_defaults_to_full_time(db_session):
+    job = make_raw_job(employment_type_raw=None, title="Software Engineer")
+    assert infer_employment_type(job) == "Full-time"
+
+
+def test_upsert_job_populates_missing_employment_type(db_session):
+    company = get_or_create_company(db_session, "Acme", "greenhouse", "acme")
+    result = upsert_job(
+        db_session, company, make_raw_job(employment_type_raw=None, title="Software Engineer, Intern")
+    )
+    db_session.commit()
+    assert result.job.employment_type == "Internship"

@@ -143,3 +143,29 @@ def test_high_years_requirement_is_penalized(profile):
     )
     result = score_layer1(job, profile)
     assert result.experience_fit == "Weak"
+
+
+def test_intern_substring_does_not_false_positive_on_internal_international(profile):
+    # Regression: "intern" as a bare substring matched inside "internal"/
+    # "international", which are extremely common words in job descriptions
+    # unrelated to internships (e.g. "Internal Audit", "international team").
+    job = make_job(
+        title="Internal Audit Lead, Treasury",
+        description_raw=(
+            "Lead our internal audit function, working with international "
+            "stakeholders. 8+ years of experience required."
+        ),
+    )
+    result = score_layer1(job, profile)
+    assert result.experience_fit != "Strong"
+    assert not any("entry-level" in r.lower() for r in result.reasons)
+
+
+def test_genuine_internship_is_still_detected_as_junior_signal(profile):
+    job = make_job(
+        title="Software Engineer, Intern",
+        description_raw="Join us for a summer internship building backend systems.",
+    )
+    result = score_layer1(job, profile)
+    assert result.experience_fit == "Strong"
+    assert any("entry-level" in r.lower() for r in result.reasons)
