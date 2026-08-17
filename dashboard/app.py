@@ -3,6 +3,7 @@
 Run with: streamlit run dashboard/app.py
 """
 
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -13,6 +14,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pandas as pd
 import streamlit as st
+
+# On Streamlit Community Cloud, secrets are set via their dashboard and
+# surfaced through st.secrets — not guaranteed to also land in os.environ.
+# Copy them over before anything below reads os.environ, so the exact same
+# database/config code works unmodified whether run locally (via .env) or
+# hosted (via st.secrets). setdefault() means a real local .env always wins.
+try:
+    for _key, _value in st.secrets.items():
+        os.environ.setdefault(_key, str(_value))
+except Exception:
+    pass  # no secrets.toml / no Streamlit secrets configured (e.g. local run)
 
 from config import settings  # noqa: F401 - import triggers load_dotenv() so DATABASE_URL is read from .env
 from database.engine import get_session, init_db
